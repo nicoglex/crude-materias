@@ -1,19 +1,39 @@
-<h1>Editar Materia</h1>
-<a href="{{ route('materias.index') }}">Volver al listado</a>
-<hr>
+@extends('layout')
 
-<form action="{{ route('materias.update', $materia->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre" value="{{ $materia->nombre }}" required><br><br>
-
-    <label>Créditos:</label><br>
-    <input type="number" name="creditos" value="{{ $materia->creditos }}" required><br><br>
-
-    <label>Profesor:</label><br>
-    <input type="text" name="profesor" value="{{ $materia->profesor }}" required><br><br>
-
-    <button type="submit">Actualizar Materia</button>
-</form>
+@section('content')
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0 text-dark">Editar Materia</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('materias.update', $materia->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de la materia:</label>
+                        <input type="text" name="nombre" class="form-control" value="{{ $materia->nombre }}" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Créditos:</label>
+                        <input type="number" name="creditos" class="form-control" value="{{ $materia->creditos }}" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Profesor:</label>
+                        <input type="text" name="profesor" class="form-control" value="{{ $materia->profesor }}" required>
+                    </div>
+                
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('materias.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-warning">Actualizar Materia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
